@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AALT — Association des Anesthésistes Libéraux Tzanck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b1f3a;
+      --navy-mid: #152e52;
+      --blue: #1a4a7a;
+      --accent: #4e9fd4;
+      --gold: #c8a96e;
+      --cream: #f8f5ef;
+      --white: #ffffff;
+      --text: #2c3e50;
+      --light: #e8eef5;
+      --muted: #7a8fa6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(11,31,58,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(78,159,212,0.15);
+      transition: all 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 2px;
+      font-weight: 500 !important;
+    }
+
+    /* ── HERO ── */
+    #accueil {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #0e2d50 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 8rem 4rem 4rem;
+    }
+
+    .hero-grid {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero-eyebrow-line {
+      width: 40px; height: 1px; background: var(--gold);
+    }
+
+    .hero-eyebrow-text {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero-title em {
+      font-style: italic; color: var(--gold);
+    }
+
+    .hero-desc {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem; line-height: 1.75;
+      max-width: 480px; margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary:hover { background: #d4b87a; transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; animation: fadeIn 1.2s 0.5s ease forwards;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(78,159,212,0.2);
+      border-radius: 4px;
+      padding: 2.5rem;
+      width: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(200,169,110,0.2);
+    }
+
+    .stat-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 1.2rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(78,159,212,0.12);
+      border-radius: 3px;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--white);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    .hero-badge {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: rgba(78,159,212,0.08);
+      border-left: 2px solid var(--accent);
+      border-radius: 2px;
+    }
+
+    .hero-badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    .hero-badge-text {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Decorative bg */
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(78,159,212,0.07);
+      pointer-events: none;
+    }
+
+    .hero-bg-circle:nth-child(1) { width: 600px; height: 600px; top: -100px; right: -150px; }
+    .hero-bg-circle:nth-child(2) { width: 400px; height: 400px; top: 50px; right: -50px; }
+    .hero-bg-circle:nth-child(3) { width: 200px; height: 200px; top: 150px; right: 50px; animation: rotate 30s linear infinite; }
+
+    /* ── SECTIONS BASE ── */
+    section { padding: 6rem 4rem; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+    }
+
+    .section-label-line { width: 30px; height: 1px; background: var(--gold); }
+
+    .section-label-text {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--blue); }
+
+    /* ── ASSOCIATION ── */
+    #association { background: var(--white); }
+
+    .asso-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+
+    .asso-text p {
+      color: #4a5e72; font-size: 1rem; line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .asso-values {
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+
+    .value-item {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--cream);
+      border-radius: 3px;
+      border-left: 3px solid var(--gold);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .value-item:hover { transform: translateX(4px); box-shadow: 4px 0 20px rgba(11,31,58,0.08); }
+
+    .value-icon {
+      font-size: 1.5rem; min-width: 2rem; text-align: center;
+    }
+
+    .value-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 0.3rem;
+    }
+
+    .value-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── MEMBRES ── */
+    #membres { background: var(--cream); }
+
+    .membres-intro {
+      max-width: 600px; margin-bottom: 3.5rem;
+      color: #4a5e72; line-height: 1.75;
+    }
+
+    .membres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .membre-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(11,31,58,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .membre-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(11,31,58,0.12);
+    }
+
+    .membre-avatar {
+      width: 100%; height: 180px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      position: relative;
+    }
+
+    .membre-avatar::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--gold);
+    }
+
+    .membre-info { padding: 1.5rem; }
+
+    .membre-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 0.3rem;
+    }
+
+    .membre-role {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 0.8rem;
+    }
+
+    .membre-specialite {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.5;
+    }
+
+    /* ── PATIENTS ── */
+    #patients { background: var(--navy); }
+
+    #patients .section-title { color: var(--white); }
+
+    .patients-intro {
+      color: rgba(255,255,255,0.6); max-width: 600px;
+      margin-bottom: 3rem; line-height: 1.75;
+    }
+
+    .patients-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+
+    .patient-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(78,159,212,0.15);
+      border-radius: 4px;
+      padding: 2rem;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .patient-card:hover {
+      background: rgba(78,159,212,0.08);
+      border-color: rgba(78,159,212,0.35);
+    }
+
+    .patient-icon {
+      font-size: 2rem; margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .patient-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600;
+      color: var(--white); margin-bottom: 0.8rem;
+    }
+
+    .patient-text {
+      font-size: 0.88rem; color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+
+    .patient-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .patient-link:hover { gap: 0.8rem; }
+
+    /* ── ACTUALITES ── */
+    #actualites { background: var(--white); }
+
+    .actu-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1.5rem;
+    }
+
+    .actu-card {
+      background: var(--cream);
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(11,31,58,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .actu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(11,31,58,0.1);
+    }
+
+    .actu-card.featured { background: var(--navy); }
+
+    .actu-img {
+      height: 180px;
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .actu-card.featured .actu-img { height: 220px; }
+
+    .actu-body { padding: 1.5rem; }
+
+    .actu-date {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+
+    .actu-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 0.7rem; line-height: 1.3;
+    }
+
+    .actu-card.featured .actu-title { color: var(--white); font-size: 1.5rem; }
+
+    .actu-excerpt {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.65;
+    }
+
+    .actu-card.featured .actu-excerpt { color: rgba(255,255,255,0.55); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .contact-block {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.3rem;
+    }
+
+    .contact-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600; color: var(--navy);
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(11,31,58,0.15);
+      border-radius: 2px;
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      background: var(--navy);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: var(--blue); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 3rem 4rem;
+      border-top: 1px solid rgba(78,159,212,0.12);
+    }
+
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600; color: var(--white);
+    }
+
+    .footer-logo span { color: var(--gold); }
+
+    .footer-tagline {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+      margin-top: 0.3rem; letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(78,159,212,0.4); }
+      50%      { box-shadow: 0 0 0 6px rgba(78,159,212,0); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #accueil { padding: 7rem 1.5rem 4rem; }
+      .hero-grid, .asso-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .patients-grid { grid-template-columns: 1fr; }
+      .actu-grid { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.5rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .footer-links { flex-wrap: wrap; gap: 1rem; }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(11,31,58,0.85); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--white); border-radius: 4px;
+      max-width: 600px; width: 90%;
+      padding: 2.5rem; position: relative;
+      animation: fadeUp 0.3s ease;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      background: none; border: none; font-size: 1.4rem;
+      cursor: pointer; color: var(--muted);
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; color: var(--navy); margin-bottom: 1rem;
+    }
+    .modal-content { font-size: 0.92rem; color: #4a5e72; line-height: 1.8; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">AALT<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#association">L'Association</a></li>
+    <li><a href="#membres">Nos Médecins</a></li>
+    <li><a href="#patients">Infos Patients</a></li>
+    <li><a href="#actualites">Actualités</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="accueil">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Clinique Privée Arnault Tzanck · Mougins</span>
+      </div>
+      <h1 class="hero-title">
+        L'<em>excellence</em><br>anesthésique<br>à votre service
+      </h1>
+      <p class="hero-desc">
+        L'Association des Anesthésistes Libéraux Tzanck regroupe des praticiens expérimentés, engagés pour votre sécurité et votre confort tout au long de votre parcours chirurgical.
+      </p>
+      <div class="hero-btns">
+        <a href="#patients" class="btn-primary">Informations patients</a>
+        <a href="#association" class="btn-outline">Découvrir l'association</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-title">L'Association en chiffres</div>
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-num">9</span>
+            <span class="stat-label">Anesthésistes</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">30+</span>
+            <span class="stat-label">Ans d'expertise</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">24h</span>
+            <span class="stat-label">Sur 24</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Secteur 2</span>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text">Disponibles · Clinique Arnault Tzanck, Mougins</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ASSOCIATION ── -->
+<section id="association">
+  <div class="section-inner">
+    <div class="asso-grid reveal">
+      <div class="asso-text">
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Qui sommes-nous</span>
+        </div>
+        <h2 class="section-title">Une association au service de la <em>médecine libérale</em></h2>
+        <p>Fondée par des anesthésistes-réanimateurs libéraux exerçant au sein de la Clinique privée Arnault Tzanck à Mougins, notre association rassemble des praticiens partageant une vision commune : offrir une prise en charge anesthésique d'excellence dans un cadre humain et bienveillant.</p>
+        <p>Nous intervenons dans toutes les spécialités chirurgicales de la clinique — chirurgie orthopédique, viscérale, ophtalmologique, ORL, gynécologique, cardiaque et vasculaire — en assurant une permanence des soins 24h/24.</p>
+        <p>Notre engagement collectif garantit une continuité et une cohérence de soins optimales pour chaque patient que nous prenons en charge.</p>
+      </div>
+      <div class="asso-values">
+        <div class="value-item">
+          <div class="value-icon">🏥</div>
+          <div>
+            <div class="value-title">Sécurité avant tout</div>
+            <div class="value-desc">Protocoles rigoureux, matériel de pointe et formation continue pour garantir votre sécurité à chaque intervention.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🤝</div>
+          <div>
+            <div class="value-title">Écoute et accompagnement</div>
+            <div class="value-desc">Consultation préanesthésique systématique pour répondre à vos questions et personnaliser votre prise en charge.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🔬</div>
+          <div>
+            <div class="value-title">Innovation médicale</div>
+            <div class="value-desc">Intégration des dernières avancées en analgésie multimodale, anesthésie locorégionale et récupération rapide.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">⚖️</div>
+          <div>
+            <div class="value-title">Transparence tarifaire</div>
+            <div class="value-desc">Information claire sur les honoraires et les dépassements dès la consultation d'anesthésie.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEMBRES ── -->
+<section id="membres">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">L'équipe</span>
+    </div>
+    <h2 class="section-title reveal">Nos <em>médecins anesthésistes</em></h2>
+    <p class="membres-intro reveal">Une équipe complémentaire de praticiens spécialisés, formés dans les meilleures facultés de médecine françaises et européennes.</p>
+
+    <div class="membres-grid reveal">
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0b2d52,#1a5a8a)">SA</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Selim Aboulethar</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Anesthésie générale · Réanimation · Chirurgie complexe</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0e2a48,#1a4a7a)">NH</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Hichem Nouicer</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Anesthésie locorégionale · Orthopédie · Douleur</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#102040,#1f5c96)">LF</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Franck Lame</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Chirurgie cardiaque · Anesthésie thoracique</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0b1f3a,#1a4a7a)">CM</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Mathieu Courvoisier</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Anesthésie ambulatoire · Chirurgie viscérale · RAAC</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#122540,#1e5080)">GF</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Frédéric Guisset</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Neurochirurgie · Anesthésie pédiatrique</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0d2238,#1a5078)">HPK</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Kyann Hodjat Pannah</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Anesthésie obstétricale · Périnatalité · ALR</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0f2540,#1b5488)">LM</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Martina Luciani</div>
+          <div class="membre-role">Anesthésiste-Réanimatrice</div>
+          <div class="membre-specialite">Chirurgie gynécologique · Anesthésie ORL · Sédation</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0b2035,#1a4870)">DA</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Arnaud Deleuze</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Anesthésie ophtalmologique · Chirurgie ambulatoire</div>
+        </div>
+      </div>
+      <div class="membre-card">
+        <div class="membre-avatar" style="background:linear-gradient(135deg,#0e2340,#1c4e80)">DMA</div>
+        <div class="membre-info">
+          <div class="membre-name">Dr. Alexandre Di Marco</div>
+          <div class="membre-role">Anesthésiste-Réanimateur</div>
+          <div class="membre-specialite">Chirurgie vasculaire · Réanimation · Analgésie</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PATIENTS ── -->
+<section id="patients">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Informations pratiques</span>
+    </div>
+    <h2 class="section-title reveal">Tout savoir avant votre <em>intervention</em></h2>
+    <p class="patients-intro reveal">Nous mettons tout en œuvre pour que votre parcours anesthésique soit clair, rassurant et adapté à votre situation personnelle.</p>
+
+    <div class="patients-grid reveal">
+      <div class="patient-card" onclick="openModal('consult')">
+        <span class="patient-icon">📋</span>
+        <div class="patient-title">La consultation préanesthésique</div>
+        <p class="patient-text">Obligatoire avant toute intervention, elle permet d'évaluer votre état de santé, d'adapter l'anesthésie et de répondre à toutes vos questions.</p>
+        <a href="#" class="patient-link" onclick="event.preventDefault(); openModal('consult')">En savoir plus →</a>
+      </div>
+      <div class="patient-card" onclick="openModal('types')">
+        <span class="patient-icon">💉</span>
+        <div class="patient-title">Types d'anesthésie</div>
+        <p class="patient-text">Générale, locorégionale, sédation consciente… Nous choisissons avec vous la technique la mieux adaptée à votre intervention et votre morphologie.</p>
+        <a href="#" class="patient-link" onclick="event.preventDefault(); openModal('types')">En savoir plus →</a>
+      </div>
+      <div class="patient-card" onclick="openModal('reveil')">
+        <span class="patient-icon">🛌</span>
+        <div class="patient-title">Le réveil & la douleur</div>
+        <p class="patient-text">Une prise en charge anticipée de la douleur postopératoire grâce à l'analgésie multimodale pour un réveil confortable et serein.</p>
+        <a href="#" class="patient-link" onclick="event.preventDefault(); openModal('reveil')">En savoir plus →</a>
+      </div>
+      <div class="patient-card" onclick="openModal('jeune')">
+        <span class="patient-icon">🍽️</span>
+        <div class="patient-title">Les règles de jeûne</div>
+        <p class="patient-text">Ne rien manger ni boire dans les heures précédant votre intervention est une règle de sécurité absolue. Voici les recommandations actualisées.</p>
+        <a href="#" class="patient-link" onclick="event.preventDefault(); openModal('jeune')">En savoir plus →</a>
+      </div>
+      <div class="patient-card" onclick="openModal('medicaments')">
+        <span class="patient-icon">💊</span>
+        <div class="patient-title">Vos médicaments</div>
+        <p class="patient-text">Certains traitements doivent être maintenus, d'autres arrêtés avant l'opération. Votre anesthésiste vous guide précisément lors de la consultation.</p>
+        <a href="#" class="patient-link" onclick="event.preventDefault(); openModal('medicaments')">En savoir plus →</a>
+      </div>
+      <div class="patient-card" onclick="openModal('ambulatoire')">
+        <span class="patient-icon">🏠</span>
+        <div class="patient-title">Chirurgie ambulatoire</div>
+        <p class="patient-text">De plus en plus d'interventions permettent un retour à domicile le jour même, dans des conditions de sécurité optimales et un confort maximal.</p>
+        <a href="#" class="patient-link" onclick="event.preventDefault(); openModal('ambulatoire')">En savoir plus →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACTUALITES ── -->
+<section id="actualites">
+  <div class="section-inner">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span class="section-label-text">Vie de l'association</span>
+    </div>
+    <h2 class="section-title reveal">Nos <em>actualités</em></h2>
+
+    <div class="reveal" style="margin-top:2rem; padding:3rem 2rem; background:var(--white); border:1px dashed rgba(11,31,58,0.15); border-radius:4px; text-align:center;">
+      <div style="font-size:2rem; margin-bottom:1rem;">📰</div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); margin-bottom:0.5rem;">Les actualités arrivent bientôt</p>
+      <p style="font-size:0.88rem; color:var(--muted);">Cette section sera alimentée prochainement par l'équipe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid reveal">
+      <div>
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Nous contacter</span>
+        </div>
+        <h2 class="section-title">Prenez <em>rendez-vous</em></h2>
+        <p style="color:#4a5e72; line-height:1.75; margin-bottom:2.5rem;">
+          Pour toute question relative à votre prise en charge anesthésique, pour planifier votre consultation préanesthésique ou pour nous joindre directement.
+        </p>
+
+        <div class="contact-info">
+          <div class="contact-block">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Adresse</div>
+              <div class="contact-value">Clinique Arnault Tzanck<br>2 av. de Tournamy, 06250 Mougins</div>
+            </div>
+          </div>
+          <div class="contact-block">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Téléphone secrétariat</div>
+              <div class="contact-value">04 XX XX XX XX</div>
+            </div>
+          </div>
+          <div class="contact-block">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">contact@aalt-mougins.fr</div>
+            </div>
+          </div>
+          <div class="contact-block">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label">Permanence</div>
+              <div class="contact-value">24h/24 — 7j/7</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" placeholder="Jean">
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" placeholder="Dupont">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="jean.dupont@email.fr">
+        </div>
+        <div class="form-group">
+          <label>Objet</label>
+          <select>
+            <option>Demande de consultation préanesthésique</option>
+            <option>Renseignements généraux</option>
+            <option>Question sur un traitement</option>
+            <option>Urgence (appeler directement le 04…)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Décrivez votre demande…"></textarea>
+        </div>
+        <button class="form-submit">Envoyer le message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">AALT<span>.</span></div>
+      <div class="footer-tagline">Association des Anesthésistes Libéraux Tzanck · Mougins</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#association">Association</a></li>
+      <li><a href="#membres">Médecins</a></li>
+      <li><a href="#patients">Patients</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#">Mentions légales</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 AALT · Tous droits réservés</div>
+  </div>
+</footer>
+
+<!-- ── MODALS ── -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Modals
+  const modals = {
+    consult: {
+      title: "La consultation préanesthésique",
+      content: `<p>La consultation d'anesthésie est <strong>obligatoire avant toute intervention chirurgicale ou exploratoire</strong> nécessitant une anesthésie. Elle doit avoir lieu plusieurs jours avant l'opération.</p><br>
+      <p><strong>Lors de cette consultation, votre anesthésiste :</strong></p><br>
+      <ul style="padding-left:1.5rem; line-height:2">
+        <li>Évalue votre état de santé général et vos antécédents médicaux</li>
+        <li>Recense tous vos traitements en cours</li>
+        <li>Vous explique les différentes techniques d'anesthésie possibles</li>
+        <li>Répond à toutes vos questions</li>
+        <li>Vous remet les informations et consignes préopératoires</li>
+      </ul><br>
+      <p>Pensez à apporter votre ordonnance médicale, votre carte vitale, et la liste complète de vos médicaments.</p>`
+    },
+    types: {
+      title: "Les types d'anesthésie",
+      content: `<p><strong>Anesthésie générale :</strong> Vous dormez complètement pendant l'intervention. C'est la technique la plus courante pour les chirurgies longues ou complexes.</p><br>
+      <p><strong>Anesthésie locorégionale (ALR) :</strong> Seule une partie du corps est endormie (rachianesthésie, péridurale, bloc nerveux). Vous restez conscient(e) mais sans douleur.</p><br>
+      <p><strong>Sédation consciente :</strong> Vous êtes dans un état de somnolence légère tout en restant capable de coopérer. Utilisée pour des gestes courts ou diagnostiques.</p><br>
+      <p>Le choix de la technique dépend de la nature de l'intervention, de votre état de santé et de vos préférences. Il est discuté avec vous lors de la consultation préanesthésique.</p>`
+    },
+    reveil: {
+      title: "Le réveil et la gestion de la douleur",
+      content: `<p>La gestion de la douleur postopératoire commence <strong>avant même l'opération</strong>, grâce à une approche dite d'analgésie multimodale.</p><br>
+      <p>Après l'intervention, vous êtes pris en charge en <strong>Salle de Surveillance Post-Interventionnelle (SSPI)</strong>, où une infirmière spécialisée surveille votre réveil.</p><br>
+      <p>Nous utilisons plusieurs moyens complémentaires pour contrôler la douleur : antalgiques par paliers, anti-inflammatoires, blocs nerveux prolongés, et si nécessaire la morphine titrée avec surveillance.</p><br>
+      <p>N'hésitez pas à signaler votre douleur dès le réveil : la prendre en charge rapidement est notre priorité.</p>`
+    },
+    jeune: {
+      title: "Les règles de jeûne préopératoire",
+      content: `<p>Le jeûne préopératoire est une règle de sécurité <strong>absolue et non négociable</strong> qui prévient le risque d'inhalation pulmonaire lors de l'anesthésie.</p><br>
+      <p><strong>Recommandations actuelles :</strong></p><br>
+      <ul style="padding-left:1.5rem; line-height:2.2">
+        <li><strong>6 heures</strong> sans nourriture solide, ni lait</li>
+        <li><strong>4 heures</strong> sans lait maternel (nourrissons)</li>
+        <li><strong>2 heures</strong> sans liquides clairs (eau, café sans lait, jus de pomme sans pulpe)</li>
+      </ul><br>
+      <p>Votre équipe chirurgicale et anesthésique vous communiquera les horaires précis en fonction de votre heure d'intervention.</p>`
+    },
+    medicaments: {
+      title: "Vos médicaments avant l'opération",
+      content: `<p>Ne modifiez jamais votre traitement sans avis médical. Lors de la consultation préanesthésique, votre anesthésiste vous donnera des consignes précises.</p><br>
+      <p><strong>En règle générale :</strong></p><br>
+      <ul style="padding-left:1.5rem; line-height:2.2">
+        <li>Les anticoagulants (Xarelto, Eliquis, Pradaxa…) nécessitent souvent un arrêt anticipé</li>
+        <li>Les antiagrégants (aspirine, Plavix…) : décision au cas par cas</li>
+        <li>Les médicaments pour le diabète, l'hypertension : souvent maintenus</li>
+        <li>Les plantes, compléments alimentaires : à signaler impérativement</li>
+      </ul><br>
+      <p>Apportez toujours la liste complète de vos médicaments à la consultation.</p>`
+    },
+    ambulatoire: {
+      title: "La chirurgie ambulatoire",
+      content: `<p>La chirurgie ambulatoire, ou chirurgie «  au jour le jour », permet de rentrer chez vous le jour même de votre intervention. Elle représente aujourd'hui plus de 60% des actes chirurgicaux en France.</p><br>
+      <p><strong>Elle est possible si vous :</strong></p><br>
+      <ul style="padding-left:1.5rem; line-height:2.2">
+        <li>Êtes en bonne condition générale</li>
+        <li>Avez un accompagnant pour le retour à domicile</li>
+        <li>Pouvez être contacté(e) par téléphone dans les 24h suivantes</li>
+        <li>N'habitez pas trop loin de la clinique</li>
+      </ul><br>
+      <p>Votre sécurité reste la priorité : si votre état le nécessite, une hospitalisation traditionnelle sera maintenue sans discussion.</p>`
+    }
+  };
+
+  function openModal(key) {
+    document.getElementById('modal-title').innerHTML = modals[key].title;
+    document.getElementById('modal-content').innerHTML = modals[key].content;
+    document.getElementById('modal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+</body>
+</html>
